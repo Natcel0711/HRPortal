@@ -5,13 +5,9 @@ export interface User{
     Username:string
 }
 
-export const getUserInformation = async (sessionID:string | undefined):Promise<User> => {
-    //get user by session id
-    if(!sessionID)
-        sessionID = ''
-    let user = await fetch('https://gouser-production.up.railway.app/users/BySession/' + sessionID).then(x => x.json())
-    return user
-}
+// export const GetUserBySession = async (sessionID:string | undefined):Promise<User> => {
+    
+// }
 
 export const SignIn = async (user:User) => {
     return await fetch('https://localhost:7234/signin', {
