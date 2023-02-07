@@ -1,4 +1,4 @@
-import { redirect, type Actions } from '@sveltejs/kit';
+import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { SignUp, type User } from '../../lib/models/user';
 import type { PageServerLoad } from './$types';
 
@@ -8,29 +8,22 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 export const actions: Actions = {
 	register: async ({ request }) => {
-		try {
-			const formData = await request.formData();
-			const data = Object.fromEntries([...formData]);
-            let user:User = {
-                Id: 0,
-                Email: data.email.toString(),
-                Username: data.username.toString(),
-                Password: data.password.toString()
-            }
-            let response = await SignUp(user);
-            if(response?.error)
-                return {
-                    error: 'user exists',
-                    code: 400,
-                    email: user.Email,
-                    username: user.Username
-                }
-			throw redirect(303, '/login');
-		} catch (error) {
-            return {
-                error: error,
-                code: 400
-            }
-        }
+		const formData = await request.formData();
+		const data = Object.fromEntries([...formData]);
+		let user: User = {
+			Id: 0,
+			Email: data.email.toString(),
+			Username: data.username.toString(),
+			Password: data.password.toString()
+		};
+		let response = await SignUp(user);
+		if (response?.error)
+			return fail(400, {
+				error: 'user exists',
+				code: 400,
+				email: user.Email,
+				username: user.Username
+			});
+		throw redirect(303, '/login');
 	}
 };
