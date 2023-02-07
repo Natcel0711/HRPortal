@@ -5,9 +5,19 @@ export interface User{
     Username:string
 }
 
-// export const GetUserBySession = async (sessionID:string | undefined):Promise<User> => {
-    
-// }
+export const GetUserBySession = async (sessionID:string | undefined):Promise<User> => {
+    return await fetch('https://localhost:7234/getbysession', {
+        body:JSON.stringify({
+            Id: 0,
+            SessionId: sessionID,
+            UserId: ''
+        }),
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+    }).then(x => x.json())
+}
 
 export const SignIn = async (user:User) => {
     return await fetch('https://localhost:7234/signin', {
