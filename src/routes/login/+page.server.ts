@@ -11,7 +11,7 @@ export const actions: Actions = {
 		const formData = await request.formData();
 		const data = Object.fromEntries([...formData]);
 		let user: User = {
-			Id: 0,
+			Id: {},
 			Email: data.email.toString(),
 			Password: data.password.toString(),
 			Username: data.email.toString()
@@ -24,7 +24,7 @@ export const actions: Actions = {
 				email: user.Email,
 				username: user.Username
 			});
-		cookies.set('session', res.id);
+		cookies.set('session', res.session.sessionId);
 		throw redirect(303, '/');
 	}
 };

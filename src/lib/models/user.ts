@@ -1,16 +1,16 @@
 export interface User{
-    Id:number
+    Id:Object
     Email:string
     Password:string
     Username:string
 }
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-export const GetUserBySession = async (sessionID:string | undefined):Promise<User> => {
+export const GetUserBySession = async (sessionID:string):Promise<User> => {
     return await fetch('https://localhost:7234/getbysession/', {
         body:JSON.stringify({
-            Id: 0,
+            Id: {},
             SessionId: sessionID,
-            UserId: ''
+            UserId: {}
         }),
         method:'POST',
         headers: {
