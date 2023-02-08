@@ -4,17 +4,16 @@
 </script>
 {#if data?.user}
   <div>
-    <h1>Yellow {data?.user.username}</h1>
+    <div class="card p-4">{data.user.username}</div>
   </div>
   {:else}
-  <div class="bg-white mt-4">
-    <div class="text-center border border-gray-900">
-      <h1 class="border">Welcome</h1>
-      <div>
-        <a href="/login">Log in</a>
+  <div class="text-center">
+    <div class="card m-auto w-2/4 card-hover p-4 ">
+      <div class="m-2">
+        <a href="/login" class="btn bg-slate-800 rounded-md text-white">Login</a>
       </div>
-      <div>
-        <a href="/register">Register</a>
+      <div class="m-2">
+        <a href="/register" class="btn bg-slate-800 rounded-md text-white">Register</a>
       </div>
     </div>
   </div>

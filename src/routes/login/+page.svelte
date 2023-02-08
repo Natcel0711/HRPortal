@@ -25,30 +25,35 @@
 	};
 </script>
 
-<div class="bg-slate-50 text-center border border-stone-200 m-4 p-4 rounded-lg">
-	<div>
-		<h1>Log in</h1>
-	</div>
-	<form action="?/login" method="post" use:enhance={OnSubmitLogin}>
-		<div class="m-2">
-			<label for="">
-				Email Or Username
+<div class="mt-2">
+<div class="card variant-ringed-surface p-4 m-auto w-2/4">
+	<header class="card-header"><h1 class="text-center">Log in</h1></header>
+	<div class="p-4 text-center">
+		<form action="?/login" method="post" use:enhance={OnSubmitLogin}>
+			<div class="m-2">
+				<h3>Email/Username</h3>
 				<input
 					value={form?.email ?? ''}
 					name="email"
 					type="email"
-					class="border rounded-sm"
-                    placeholder="Email Address or Username"
+					class="input"
+					placeholder="Email/Username"
 					required
 				/>
-			</label>
-		</div>
-		<div class="m-2">
-			<label for="">
-				Password
-				<input value={pass} placeholder="Password" name="password" type="password" class="border rounded-sm" required />
-			</label>
-		</div>
-		<button type="submit" class="rounded-md bg-slate-500 p-2 text-white">Log in</button>
-	</form>
+			</div>
+			<div class="m-2">
+				<h3>Password</h3>
+				<input
+					value={pass}
+					placeholder="Password"
+					name="password"
+					type="password"
+					class="input"
+					required
+				/>
+			</div>
+			<button type="submit" class="btn bg-slate-800 text-white">Log in</button>
+		</form>
+	</div>
+</div>
 </div>

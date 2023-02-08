@@ -13,7 +13,7 @@ export const actions: Actions = {
 		let user: User = {
 			Id: 0,
 			Email: data.email.toString(),
-			Username: data.username.toString(),
+			Username: data.email.toString().split('@')[0],
 			Password: data.password.toString()
 		};
 		let response = await SignUp(user);
